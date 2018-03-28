@@ -4,7 +4,7 @@
 #include <Engine/World.h>
 #include <DrawDebugHelpers.h>
 
-#define OUT
+#define OUT		// This does nothing. Just to remind us when we use an Out parameter)
 
 
 // Sets default values for this component's properties
@@ -42,6 +42,7 @@ void UGrabber::BeginPlay()
 	if (InputComponent)
 	{
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	}
 	else
 	{
@@ -52,6 +53,11 @@ void UGrabber::BeginPlay()
 void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grabbibg..."));
+}
+
+void UGrabber::Release()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Releasing..."));
 }
 
 // Called every frame
